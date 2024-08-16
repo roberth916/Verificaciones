@@ -1,31 +1,25 @@
 class Calcular
-  def numero_par(numero)
-    i=0
-    resultado =0
-    while i < numero.to_i
-      if i%2 ==0
-        resultado += i
-      end
-      i+=1
-      end
-      puts "La suma de los numeros pares de 15 es: "
-      puts "#{resultado}"
+  def initialize(numero)
+    @numero = numero.to_i
   end
-  def numero_impar(numero)
-    i=0
-    resultado = 0
-    while i <numero.to_i
-      if i%2 !=0 
-         resultado+=i
-      end
-      i+=1
-      end
-      puts "La suma de los numeros impares de 15 es: "
-      puts "#{resultado}"
-    end
+
+  def suma_pares
+    resultado = (0...@numero).select { |i| i.even? }.sum
+    puts "La suma de los números pares hasta #{@numero} es: #{resultado}"
   end
-resolver = Calcular.new
-puts "Ingrese el numero maximo al sumar"
-numero = gets.chomp
-resolver.numero_par(numero)
-resolver.numero_impar(numero)
+
+  def suma_impares
+    resultado = (0...@numero).select { |i| i.odd? }.sum
+    puts "La suma de los números impares hasta #{@numero} es: #{resultado}"
+  end
+end
+
+def obtener_numero
+  puts "Ingrese el número máximo para sumar:"
+  gets.chomp
+end
+
+numero = obtener_numero
+calcular = Calcular.new(numero)
+calcular.suma_pares
+calcular.suma_impares
